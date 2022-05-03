@@ -8,8 +8,7 @@ public class Configuration {
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
 
-        RestAssured.basePath = "basePath";
-        RestAssured.requestSpecification = Specification.requestSpecification();
+        //RestAssured.requestSpecification = Specification.requestSpecification();
 
     }
 }
