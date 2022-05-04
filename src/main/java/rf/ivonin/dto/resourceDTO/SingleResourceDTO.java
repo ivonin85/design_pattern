@@ -1,9 +1,9 @@
-package rf.ivonin.data.dto.resourceDTO;
+package rf.ivonin.dto.resourceDTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.experimental.Accessors;
-import rf.ivonin.data.dto.generalDTO.ResourceDataDTO;
-import rf.ivonin.data.dto.generalDTO.SupportDTO;
+import rf.ivonin.dto.generalDTO.ResourceDataDTO;
+import rf.ivonin.dto.generalDTO.SupportDTO;
 
 @lombok.Data
 @Accessors(chain = true)

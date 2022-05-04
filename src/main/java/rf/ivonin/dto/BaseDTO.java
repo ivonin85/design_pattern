@@ -1,4 +1,4 @@
-package rf.ivonin.data.dto;
+package rf.ivonin.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

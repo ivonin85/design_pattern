@@ -1,10 +1,10 @@
-package rf.ivonin.data.dto.userListDTO;
+package rf.ivonin.dto.userListDTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.experimental.Accessors;
-import rf.ivonin.data.dto.generalDTO.UserDataDTO;
-import rf.ivonin.data.dto.generalDTO.SupportDTO;
+import rf.ivonin.dto.generalDTO.UserDataDTO;
+import rf.ivonin.dto.generalDTO.SupportDTO;
 
 import java.util.List;
 

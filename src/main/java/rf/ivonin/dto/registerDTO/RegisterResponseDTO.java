@@ -1,13 +1,14 @@
-package rf.ivonin.data.dto.createDTO;
+package rf.ivonin.dto.registerDTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.experimental.Accessors;
 
-@lombok.Data
+@Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CreateRequestDTO {
-    private String name;
-    private String job;
+public class RegisterResponseDTO {
+    private int id;
+    private String token;
 
 }

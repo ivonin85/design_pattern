@@ -1,4 +1,4 @@
-package rf.ivonin.data.dto.generalDTO;
+package rf.ivonin.dto.generalDTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,17 +1,17 @@
 package rf.ivonin.data.dataProvider;
 
 import org.testng.annotations.DataProvider;
-import rf.ivonin.data.dto.BaseDTO;
-import rf.ivonin.data.dto.HubDTO;
-import rf.ivonin.data.dto.createDTO.CreateRequestDTO;
-import rf.ivonin.data.dto.createDTO.CreateResponseDTO;
-import rf.ivonin.data.dto.generalDTO.ResourceDataDTO;
-import rf.ivonin.data.dto.generalDTO.SupportDTO;
-import rf.ivonin.data.dto.generalDTO.UserDataDTO;
-import rf.ivonin.data.dto.registerDTO.RegisterDTO;
-import rf.ivonin.data.dto.registerDTO.RegisterResponseDTO;
-import rf.ivonin.data.dto.resourceDTO.SingleResourceDTO;
-import rf.ivonin.data.dto.userDTO.SingleUserDTO;
+import rf.ivonin.dto.BaseDTO;
+import rf.ivonin.dto.HubDTO;
+import rf.ivonin.dto.createDTO.CreateRequestDTO;
+import rf.ivonin.dto.createDTO.CreateResponseDTO;
+import rf.ivonin.dto.generalDTO.ResourceDataDTO;
+import rf.ivonin.dto.generalDTO.SupportDTO;
+import rf.ivonin.dto.generalDTO.UserDataDTO;
+import rf.ivonin.dto.registerDTO.RegisterDTO;
+import rf.ivonin.dto.registerDTO.RegisterResponseDTO;
+import rf.ivonin.dto.resourceDTO.SingleResourceDTO;
+import rf.ivonin.dto.userDTO.SingleUserDTO;
 
 import java.util.Iterator;
 import java.util.List;

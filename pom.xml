@@ -15,9 +15,22 @@
         <rest-assured.version>5.0.1</rest-assured.version>
         <lombok.version>1.18.24</lombok.version>
         <assertj.version>3.22.0</assertj.version>
+        <retrofit.version>2.9.0</retrofit.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

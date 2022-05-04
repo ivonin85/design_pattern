@@ -1,14 +1,14 @@
-package rf.ivonin.data.dto;
+package rf.ivonin.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import rf.ivonin.data.dto.createDTO.CreateRequestDTO;
-import rf.ivonin.data.dto.createDTO.CreateResponseDTO;
-import rf.ivonin.data.dto.registerDTO.RegisterDTO;
-import rf.ivonin.data.dto.registerDTO.RegisterResponseDTO;
-import rf.ivonin.data.dto.resourceDTO.SingleResourceDTO;
-import rf.ivonin.data.dto.userDTO.SingleUserDTO;
-import rf.ivonin.data.dto.userListDTO.UserListDTO;
+import rf.ivonin.dto.createDTO.CreateRequestDTO;
+import rf.ivonin.dto.createDTO.CreateResponseDTO;
+import rf.ivonin.dto.registerDTO.RegisterDTO;
+import rf.ivonin.dto.registerDTO.RegisterResponseDTO;
+import rf.ivonin.dto.resourceDTO.SingleResourceDTO;
+import rf.ivonin.dto.userDTO.SingleUserDTO;
+import rf.ivonin.dto.userListDTO.UserListDTO;
 
 @Data
 @Accessors(chain = true)
