@@ -20,21 +20,21 @@ import java.util.HashMap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static rf.ivonin.data.constants.Endpoints.*;
 
-@Epic("API tests")
-@Feature("@Feature")
+
 public class ReqResTest {
 
     /*
      * TODO JsonSchemaValidator validator = JsonSchemaValidator.matchesJsonSchemaInClasspath(jsonSchemaPath);
-     * TODO статус коды вынести в датапровайдеры
      */
 
     Request request = new Request();
 
-    @Test(description = "GET LIST USERS", priority = 0)
-    @Description("Тестируем параметризованный GET запрос + Список пользователей")
+
+    @Epic("GET Запросы")
+    @Story("GET LIST USERS")
     @Severity(SeverityLevel.BLOCKER)
-    @Story("@Story")
+    @Test(priority = 1)
+    @Description("Тестируем параметризованный GET запрос + Список пользователей")
     public void userListTest() {
 
         var params = new HashMap<String, Integer>() {{
@@ -44,29 +44,39 @@ public class ReqResTest {
         var userList = request.get(USERS, params, UserListDTO.class);
     }
 
-    @Test(description = "GET SINGLE USER",
-            dataProvider = "singleUserTest", dataProviderClass = TestDataProvider.class)
+    @Epic("GET Запросы")
+    @Story("GET SINGLE USER")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "singleUserTest", dataProviderClass = TestDataProvider.class)
     public void singleUserTest(SingleUserDTO data) {
 
         var singleUser = request.get(USERS + "/5", SingleUserDTO.class);
         assertThat(data).isEqualTo(singleUser);
     }
 
-    @Test(description = "GET SINGLE USER NOT FOUND + GET SINGLE <RESOURCE> NOT FOUND",
-            dataProvider = "notFoundTest", dataProviderClass = TestDataProvider.class)
+    @Epic("GET Запросы")
+    @Story("GET SINGLE USER NOT FOUND + GET SINGLE <RESOURCE> NOT FOUND")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "notFoundTest", dataProviderClass = TestDataProvider.class)
     public void notFoundTest(BaseDTO data) {
 
         var userList = request.get(data.getRoute(), data.getStatusCode());
 
     }
 
-    @Test(description = "GET LIST <RESOURCE>")
+    @Epic("GET Запросы")
+    @Story("GET LIST <RESOURCE>")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
     public void resourceListTest() {
 
         var userList = request.get(RESOURCE, ResourceListDTO.class);
     }
 
-    @Test(description = "GET SINGLE USER JSON Schema Test")
+    @Epic("GET Запросы")
+    @Story("GET SINGLE USER JSON Schema Test")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
     public void singleUserJSONSchemaTest() {
         var singleUser = request.get(
                 USERS + "/5",
@@ -74,8 +84,10 @@ public class ReqResTest {
                 SingleUserDTO.class);
     }
 
-    @Test(description = "GET SINGLE <RESOURCE>",
-            dataProvider = "singleResourceTest", dataProviderClass = TestDataProvider.class)
+    @Epic("GET Запросы")
+    @Story("GET SINGLE <RESOURCE>")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(dataProvider = "singleResourceTest", dataProviderClass = TestDataProvider.class)
     public void singleResourceTest(HubDTO data) {
 
         var singleResource = request.get(
@@ -86,8 +98,10 @@ public class ReqResTest {
 
     }
 
-    @Test(description = "POST CREATE",
-            dataProvider = "createTest", dataProviderClass = TestDataProvider.class)
+    @Epic("POST Запросы")
+    @Story("POST CREATE")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "createTest", dataProviderClass = TestDataProvider.class)
     public void createTest(HubDTO data) {
 
         var createResponse = request.post(
@@ -101,8 +115,10 @@ public class ReqResTest {
                 .isEqualTo(createResponse);
     }
 
-    @Test(description = "PUT UPDATE",
-            dataProvider = "putUpdateTest", dataProviderClass = TestDataProvider.class)
+    @Epic("PUT Запросы")
+    @Story("PUT UPDATE")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "putUpdateTest", dataProviderClass = TestDataProvider.class)
     public void putUpdateTest(HubDTO data) {
 
         var createResponse = request.put(
@@ -116,8 +132,10 @@ public class ReqResTest {
                 .isEqualTo(createResponse);
     }
 
-    @Test(description = "PATCH UPDATE",
-            dataProvider = "patchUpdateTest", dataProviderClass = TestDataProvider.class)
+    @Epic("PATCH Запросы")
+    @Story("Изменение пользователя")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "patchUpdateTest", dataProviderClass = TestDataProvider.class)
     public void patchUpdateTest(HubDTO data) {
 
         var createResponse = request.patch(
@@ -131,15 +149,20 @@ public class ReqResTest {
                 .isEqualTo(createResponse);
     }
 
-    @Test(description = "DELETE DELETE")
+    @Epic("DELETE Запросы")
+    @Story("DELETE DELETE")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test
     public void deleteSingleUserTest() {
 
         request.delete(USERS + "/2", 204);
 
     }
 
-    @Test(description = "POST REGISTER - SUCCESSFUL",
-            dataProvider = "registerSuccessfulTest", dataProviderClass = TestDataProvider.class)
+    @Epic("POST Запросы")
+    @Story("POST REGISTER - SUCCESSFUL")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "registerSuccessfulTest", dataProviderClass = TestDataProvider.class)
     public void registerSuccessfulTest(HubDTO data) {
 
         var registerResponse = request.post(
@@ -151,8 +174,10 @@ public class ReqResTest {
         assertThat(data.getRegisterResponseDTO()).isEqualTo(registerResponse);
     }
 
-    @Test(description = "POST LOGIN - SUCCESSFUL",
-            dataProvider = "loginSuccessfulTest", dataProviderClass = TestDataProvider.class)
+    @Epic("POST Запросы")
+    @Story("POST LOGIN - SUCCESSFUL")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "loginSuccessfulTest", dataProviderClass = TestDataProvider.class)
     public void loginSuccessfulTest(HubDTO data) {
 
         var registerResponse = request.post(
@@ -164,7 +189,10 @@ public class ReqResTest {
         assertThat(data.getRegisterResponseDTO().getToken()).isEqualTo(registerResponse.getToken());
     }
 
-    @Test(description = "POST REGISTER - UNSUCCESSFUL")
+    @Epic("POST Запросы")
+    @Story("POST REGISTER - UNSUCCESSFUL")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test
     public void registerUnsuccessfulTest() {
 
         var data = new RegisterDTO().setEmail("sydney@fife");
@@ -174,7 +202,10 @@ public class ReqResTest {
         assertThat(response.jsonPath().getString("error")).isEqualTo(errorMessage);
     }
 
-    @Test(description = "DELAYED RESPONSE")
+    @Epic("GET Запросы")
+    @Story("DELAYED RESPONSE")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test
     public void delayTest() {
         var millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
         assertThat(millis < 3000).as("DELAYED RESPONSE").isTrue();
