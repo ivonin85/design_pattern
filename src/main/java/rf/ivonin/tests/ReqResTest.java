@@ -1,5 +1,6 @@
 package rf.ivonin.tests;
 
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import rf.ivonin.data.dataProvider.TestDataProvider;
@@ -19,17 +20,21 @@ import java.util.HashMap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static rf.ivonin.data.constants.Endpoints.*;
 
-
+@Epic("API tests")
+@Feature("@Feature")
 public class ReqResTest {
 
-    /**
+    /*
      * TODO JsonSchemaValidator validator = JsonSchemaValidator.matchesJsonSchemaInClasspath(jsonSchemaPath);
      * TODO статус коды вынести в датапровайдеры
-     **/
+     */
 
     Request request = new Request();
 
-    @Test(description = "GET LIST USERS")
+    @Test(description = "GET LIST USERS", priority = 0)
+    @Description("Тестируем параметризованный GET запрос + Список пользователей")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("@Story")
     public void userListTest() {
 
         var params = new HashMap<String, Integer>() {{
@@ -171,7 +176,7 @@ public class ReqResTest {
 
     @Test(description = "DELAYED RESPONSE")
     public void delayTest() {
-        long millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
+        var millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
         assertThat(millis < 3000).as("DELAYED RESPONSE").isTrue();
     }
 }
