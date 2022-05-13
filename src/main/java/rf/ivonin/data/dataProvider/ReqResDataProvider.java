@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 import static rf.ivonin.data.constants.Endpoints.*;
 
-public class TestDataProvider {
+public class ReqResDataProvider {
     @DataProvider(name = "registerTest")
     public static Iterator<Object[]> registerTest() {
         List<RegisterDTO> data = List.of(

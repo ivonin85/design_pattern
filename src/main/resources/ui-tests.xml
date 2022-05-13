@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Тесты" parallel="methods" thread-count="5">
+    <test name="Selenide" group-by-instances="true">
+        <classes>
+            <class name="rf.ivonin.tests.SelenideTest"/>
+        </classes>
+    </test>
+
+</suite>
