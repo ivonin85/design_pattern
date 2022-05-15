@@ -14,16 +14,28 @@ import static com.codeborne.selenide.Selenide.$$;
 public class IndexPage {
 
     public SelenideElement getPageTitle() {
+
         return $(By.tagName("h1"));
+
     }
 
-    public ElementsCollection getUserNameCollection() { return $$(byXpath("//div[@class='flex']/div/p[1]")); }
+    public ElementsCollection getUserNameCollection() {
+
+        return $$(byXpath("//div[@class='flex']/div/p[1]"));
+
+    }
 
     public ElementsCollection getUserEmailCollection() {
+
         return $$(byXpath("//div[@class='flex']/div/p[2]"));
+
     }
 
-    public ElementsCollection getImageCollection() { return $$(".flex img"); }
+    public ElementsCollection getImageCollection() {
+
+        return $$(".flex img");
+
+    }
 
     @Getter
     public static class UserCard {
