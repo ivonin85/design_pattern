@@ -14,7 +14,8 @@ import rf.ivonin.dto.userListDTO.UserListDTO;
 @Accessors(chain = true)
 public class HubDTO {
 
-    private BaseDTO baseDTO;
+    private BaseAPIDTO baseAPIDTO;
+    private BaseUIDTO baseUIDTO;
 
     private RegisterResponseDTO registerResponseDTO;
     private RegisterDTO registerDTO;

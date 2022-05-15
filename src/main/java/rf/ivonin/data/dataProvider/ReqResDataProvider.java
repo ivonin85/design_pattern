@@ -1,7 +1,7 @@
 package rf.ivonin.data.dataProvider;
 
 import org.testng.annotations.DataProvider;
-import rf.ivonin.dto.BaseDTO;
+import rf.ivonin.dto.BaseAPIDTO;
 import rf.ivonin.dto.HubDTO;
 import rf.ivonin.dto.createDTO.CreateRequestDTO;
 import rf.ivonin.dto.createDTO.CreateResponseDTO;
@@ -38,7 +38,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> registerSuccessfulTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(REGISTER).setStatusCode(200))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(REGISTER).setStatusCode(200))
                         .setRegisterDTO(new RegisterDTO().setEmail("eve.holt@reqres.in").setPassword("pistol"))
                         .setRegisterResponseDTO(new RegisterResponseDTO().setToken("QpwL5tke4Pnpja7X4").setId(4))
 
@@ -50,7 +50,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> loginSuccessfulTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(LOGIN).setStatusCode(200))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(LOGIN).setStatusCode(200))
                         .setRegisterDTO(new RegisterDTO().setEmail("eve.holt@reqres.in").setPassword("cityslicka"))
                         .setRegisterResponseDTO(new RegisterResponseDTO().setToken("QpwL5tke4Pnpja7X4"))
 
@@ -81,7 +81,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> singleResourceTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(RESOURCE + "/2"))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(RESOURCE + "/2"))
                         .setSingleResourceDTO(new SingleResourceDTO()
                                 .setData(new ResourceDataDTO()
                                         .setId(2)
@@ -100,7 +100,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> createTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(RESOURCE + "/2").setStatusCode(201))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(RESOURCE + "/2").setStatusCode(201))
                         .setCreateRequestDTO(new CreateRequestDTO()
                                 .setJob("leader")
                                 .setName("morpheus")));
@@ -112,7 +112,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> putUpdateTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(RESOURCE + "/2").setStatusCode(200))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(RESOURCE + "/2").setStatusCode(200))
                         .setCreateRequestDTO(new CreateRequestDTO()
                                 .setName("morpheus")
                                 .setJob("zion resident")));
@@ -124,7 +124,7 @@ public class ReqResDataProvider {
     public static Iterator<Object[]> patchUpdateTest() {
         List<HubDTO> data = List.of(
                 new HubDTO()
-                        .setBaseDTO(new BaseDTO().setRoute(USERS + "/2").setStatusCode(200))
+                        .setBaseAPIDTO(new BaseAPIDTO().setRoute(USERS + "/2").setStatusCode(200))
                         .setCreateRequestDTO(new CreateRequestDTO()
                                 .setName("morpheus")
                                 .setJob("zion resident"))
@@ -135,9 +135,9 @@ public class ReqResDataProvider {
 
     @DataProvider(name = "notFoundTest")
     public static Iterator<Object[]> notFoundTest() {
-        List<BaseDTO> data = List.of(
-                new BaseDTO().setRoute(USERS + "/23").setStatusCode(404),
-                new BaseDTO().setRoute(RESOURCE + "/23").setStatusCode(404));
+        List<BaseAPIDTO> data = List.of(
+                new BaseAPIDTO().setRoute(USERS + "/23").setStatusCode(404),
+                new BaseAPIDTO().setRoute(RESOURCE + "/23").setStatusCode(404));
 
         return data.stream().map(val -> new Object[]{val}).collect(Collectors.toList()).iterator();
     }

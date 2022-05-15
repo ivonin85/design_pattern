@@ -5,8 +5,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class BaseDTO {
+public class BaseUIDTO {
     private String route;
-    private String JSONSchema;
-    private int statusCode;
+    private String pageTitle;
 }

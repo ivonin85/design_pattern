@@ -11,21 +11,23 @@ import rf.ivonin.steps.IndexSteps;
 @Epic("UI Тесты")
 public class SelenideTest {
 
-    private final IndexSteps indexSteps = new IndexSteps();
+    private final IndexSteps indexPageSteps = new IndexSteps();
 
     @BeforeSuite
     public void beforeSuite() {
         Configuration.baseUrl = "https://j17lt.csb.app";
+        Configuration.browser = "firefox";
+
     }
 
     @Feature("Профиль пользователя")
     @Story("Проверка на соответствие профиля пользователя API + UI")
     @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "helloReqResUsersTest", dataProviderClass = SelenideDataProvider.class)
-    public void helloReqResUsersTest(HubDTO data) throws InterruptedException {
-        indexSteps
-                .open()
-                .checkPageTitle("Hello ReqRes users!")
+    public void helloReqResUsersTest(HubDTO data) {
+        indexPageSteps
+                .openPage()
+                .checkPageTitle(data.getBaseUIDTO().getPageTitle())
                 .checkUserData(data.getSingleUserDTO());
 
 

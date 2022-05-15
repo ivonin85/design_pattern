@@ -1,34 +1,36 @@
 package rf.ivonin.pages;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagName;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@Getter
+
 public class IndexPage {
 
-    private SelenideElement pageTitle = $(By.tagName("h1"));
-    private ElementsCollection usersNameCollection = $$(By.xpath("//div[@class='flex']/div/p[1]"));
-    private ElementsCollection usersEmailsCollection = $$(By.xpath("//div[@class='flex']/div/p[2]"));
+    public SelenideElement getPageTitle() {
+        return $(By.tagName("h1"));
+    }
 
+    public ElementsCollection getUserNameCollection() { return $$(byXpath("//div[@class='flex']/div/p[1]")); }
+
+    public ElementsCollection getUserEmailCollection() {
+        return $$(byXpath("//div[@class='flex']/div/p[2]"));
+    }
+
+    public ElementsCollection getImageCollection() { return $$(".flex img"); }
 
     @Getter
-    @EqualsAndHashCode
-    @ToString
     public static class UserCard {
-        private SelenideElement rootElement;
-        private String name;
-        private String email;
-        private String avatar;
+        private final SelenideElement rootElement;
+        private final String name;
+        private final String email;
+        private final String avatar;
 
         public UserCard(SelenideElement rootElement) {
             this.rootElement = rootElement;

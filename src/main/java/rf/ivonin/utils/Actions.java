@@ -5,10 +5,11 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 
-public class Helper {
+public class Actions {
 
-    public static SelenideElement findByText(ElementsCollection elementsCollection, String text){
+    public static SelenideElement findElementByText(ElementsCollection elementsCollection, String text){
         return elementsCollection.find(text(text));
     }
+
 
 }

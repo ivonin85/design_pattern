@@ -4,7 +4,7 @@ import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import rf.ivonin.data.dataProvider.ReqResDataProvider;
-import rf.ivonin.dto.BaseDTO;
+import rf.ivonin.dto.BaseAPIDTO;
 import rf.ivonin.dto.HubDTO;
 import rf.ivonin.dto.createDTO.CreateResponseDTO;
 import rf.ivonin.dto.registerDTO.RegisterDTO;
@@ -31,6 +31,7 @@ public class ReqResTest {
     @Story("GET LIST USERS")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Тестируем параметризованный GET запрос + Список пользователей")
+    @Test
     public void userListTest() {
 
         var params = new HashMap<String, Integer>() {{
@@ -54,7 +55,7 @@ public class ReqResTest {
     @Story("GET SINGLE USER NOT FOUND + GET SINGLE <RESOURCE> NOT FOUND")
     @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "notFoundTest", dataProviderClass = ReqResDataProvider.class)
-    public void notFoundTest(BaseDTO data) {
+    public void notFoundTest(BaseAPIDTO data) {
 
         var userList = request.get(data.getRoute(), data.getStatusCode());
 
@@ -87,7 +88,7 @@ public class ReqResTest {
     public void singleResourceTest(HubDTO data) {
 
         var singleResource = request.get(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 SingleResourceDTO.class);
 
         assertThat(data.getSingleResourceDTO()).isEqualTo(singleResource);
@@ -101,10 +102,10 @@ public class ReqResTest {
     public void createTest(HubDTO data) {
 
         var createResponse = request.post(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
-                data.getBaseDTO().getStatusCode());
+                data.getBaseAPIDTO().getStatusCode());
 
         assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
                 .ignoringFields("id", "createdAt")
@@ -118,10 +119,10 @@ public class ReqResTest {
     public void putUpdateTest(HubDTO data) {
 
         var createResponse = request.put(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
-                data.getBaseDTO().getStatusCode());
+                data.getBaseAPIDTO().getStatusCode());
 
         assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
                 .ignoringFields("createdAt")
@@ -135,10 +136,10 @@ public class ReqResTest {
     public void patchUpdateTest(HubDTO data) {
 
         var createResponse = request.patch(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
-                data.getBaseDTO().getStatusCode());
+                data.getBaseAPIDTO().getStatusCode());
 
         assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
                 .ignoringFields("createdAt")
@@ -162,10 +163,10 @@ public class ReqResTest {
     public void registerSuccessfulTest(HubDTO data) {
 
         var registerResponse = request.post(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
-                data.getBaseDTO().getStatusCode());
+                data.getBaseAPIDTO().getStatusCode());
 
         assertThat(data.getRegisterResponseDTO()).isEqualTo(registerResponse);
     }
@@ -177,10 +178,10 @@ public class ReqResTest {
     public void loginSuccessfulTest(HubDTO data) {
 
         var registerResponse = request.post(
-                data.getBaseDTO().getRoute(),
+                data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
-                data.getBaseDTO().getStatusCode());
+                data.getBaseAPIDTO().getStatusCode());
 
         assertThat(data.getRegisterResponseDTO().getToken()).isEqualTo(registerResponse.getToken());
     }

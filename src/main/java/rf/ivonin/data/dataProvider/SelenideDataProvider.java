@@ -1,6 +1,7 @@
 package rf.ivonin.data.dataProvider;
 
 import org.testng.annotations.DataProvider;
+import rf.ivonin.dto.BaseUIDTO;
 import rf.ivonin.dto.HubDTO;
 import rf.ivonin.dto.userDTO.SingleUserDTO;
 import rf.ivonin.rest_assured.Request;
@@ -21,6 +22,7 @@ public class SelenideDataProvider {
         List<HubDTO> data = List.of(
                 new HubDTO()
                         .setSingleUserDTO(singleUser)
+                        .setBaseUIDTO(new BaseUIDTO().setRoute("/").setPageTitle("Hello ReqRes users!"))
         );
         return data.stream().map(val -> new Object[]{val}).collect(Collectors.toList()).iterator();
     }

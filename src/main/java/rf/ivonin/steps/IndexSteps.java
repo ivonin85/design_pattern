@@ -3,35 +3,34 @@ package rf.ivonin.steps;
 import com.codeborne.selenide.Selenide;
 import rf.ivonin.dto.userDTO.SingleUserDTO;
 import rf.ivonin.pages.IndexPage;
-import rf.ivonin.rest_assured.Request;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.page;
 import static org.assertj.core.api.Assertions.assertThat;
-import static rf.ivonin.utils.Helper.findByText;
+import static rf.ivonin.utils.Actions.findElementByText;
 
 public class IndexSteps {
 
     private final IndexPage indexPage = new IndexPage();
-    private final Request request = new Request();
 
-    public IndexSteps open() {
+    public IndexSteps openPage() {
         Selenide.open("/");
-        return this;
+        return page(IndexSteps.class);
     }
 
     public IndexSteps checkPageTitle(String text) {
-        indexPage.getPageTitle().shouldHave(text(text));
+        indexPage.getPageTitle().should(be(visible), have(text(text)));
         return this;
     }
 
     public IndexSteps checkUserData(SingleUserDTO data) {
 
-        var userCard = new IndexPage.UserCard(findByText(indexPage.getUsersNameCollection(), data.getData().getFirstName()));
+        var userCard = new IndexPage.UserCard(
+                findElementByText(indexPage.getUserNameCollection(), data.getData().getFirstName()));
 
         assertThat(data.getData().getEmail()).isEqualTo(userCard.getEmail());
         assertThat(data.getData().getFirstName()).isEqualTo(userCard.getName());
         assertThat(data.getData().getAvatar()).isEqualTo(userCard.getAvatar());
-
 
         return this;
     }
