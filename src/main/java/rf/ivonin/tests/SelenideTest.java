@@ -2,7 +2,11 @@ package rf.ivonin.tests;
 
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
-import org.testng.annotations.BeforeSuite;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import rf.ivonin.data.dataProvider.SelenideDataProvider;
 import rf.ivonin.dto.HubDTO;
@@ -10,13 +14,23 @@ import rf.ivonin.steps.IndexSteps;
 
 @Epic("UI Тесты")
 public class SelenideTest {
+    private static final Logger logger = LoggerFactory.getLogger(SelenideTest.class);
 
     private final IndexSteps indexPageSteps = new IndexSteps();
 
-    @BeforeSuite
-    public void beforeSuite() {
-        Configuration.baseUrl = "https://j17lt.csb.app";
-        Configuration.browser = "firefox";
+    @BeforeClass
+    @Parameters({"browser", "baseUrl"})
+    public void beforeSuite(@Optional() String browser, @Optional() String baseUrl) {
+        if (browser != null) {
+            Configuration.browser = browser;
+        }
+
+        if (baseUrl != null) {
+            Configuration.baseUrl = baseUrl;
+        } else {
+            Configuration.baseUrl = "https://j17lt.csb.app";
+        }
+
 
     }
 
@@ -29,9 +43,5 @@ public class SelenideTest {
                 .openPage()
                 .checkPageTitle(data.getBaseUIDTO().getPageTitle())
                 .checkUserData(data.getSingleUserDTO());
-
-
     }
-
-
 }

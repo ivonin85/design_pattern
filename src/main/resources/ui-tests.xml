@@ -2,6 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="UI Тесты" parallel="methods" thread-count="5">
     <test name="Selenide" group-by-instances="true">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="baseUrl" value="https://j17lt.csb.app"/>
         <classes>
             <class name="rf.ivonin.tests.SelenideTest"/>
         </classes>

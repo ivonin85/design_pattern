@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Все Тесты" parallel="methods" thread-count="5">
-    <test name="Selenide + ReqRes" group-by-instances="true">
+    <test name="ReqRes" group-by-instances="true">
         <classes>
             <class name="rf.ivonin.tests.ReqResTest"/>
+        </classes>
+    </test>
+
+    <test name="Selenide" group-by-instances="true">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="baseUrl" value="https://j17lt.csb.app"/>
+        <classes>
             <class name="rf.ivonin.tests.SelenideTest"/>
         </classes>
     </test>
