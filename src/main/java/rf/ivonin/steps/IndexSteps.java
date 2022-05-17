@@ -25,12 +25,14 @@ public class IndexSteps {
 
     public IndexSteps checkUserData(SingleUserDTO data) {
 
-        var userCard = new IndexPage.UserCard(
-                findElementByText(indexPage.getUserNameCollection(), data.getData().getFirstName()));
 
-        assertThat(data.getData().getEmail()).isEqualTo(userCard.getEmail());
-        assertThat(data.getData().getFirstName()).isEqualTo(userCard.getName());
-        assertThat(data.getData().getAvatar()).isEqualTo(userCard.getAvatar());
+        var userCard = new IndexPage.UserCard(
+                findElementByText(indexPage.getUserNameCollection(), data.getData().getFirstName()))
+                .getUser();
+
+        assertThat(data.getData()).usingRecursiveComparison()
+                .ignoringFields("id", "lastName")
+                .isEqualTo(userCard);
 
         return this;
     }

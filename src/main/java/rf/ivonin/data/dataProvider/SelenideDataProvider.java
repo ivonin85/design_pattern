@@ -17,7 +17,7 @@ public class SelenideDataProvider {
     @DataProvider(name = "helloReqResUsersTest")
     public static Iterator<Object[]> helloReqResUsersTest() {
 
-        var singleUser = new Request().get(USERS + "/5", SingleUserDTO.class);
+        var singleUser = new Request().get(USERS + "/3", SingleUserDTO.class);
 
         List<HubDTO> data = List.of(
                 new HubDTO()

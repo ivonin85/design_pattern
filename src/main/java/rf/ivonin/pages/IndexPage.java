@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import rf.ivonin.dto.generalDTO.UserDataDTO;
 
 import static com.codeborne.selenide.Selectors.byTagName;
 import static com.codeborne.selenide.Selectors.byXpath;
@@ -42,6 +43,13 @@ public class IndexPage {
             this.email = rootElement.parent().$(By.xpath("p[2]")).text();
             this.avatar = rootElement.parent().$(byTagName("img")).attr("src");
 
+        }
+
+        public UserDataDTO getUser() {
+            return new UserDataDTO()
+                    .setAvatar(avatar)
+                    .setEmail(email)
+                    .setFirstName(name);
         }
     }
 
