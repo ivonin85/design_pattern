@@ -12,11 +12,11 @@ import rf.ivonin.data.dataProvider.SelenideDataProvider;
 import rf.ivonin.dto.HubDTO;
 import rf.ivonin.steps.IndexSteps;
 
+import static com.codeborne.selenide.Selenide.open;
+
 @Epic("UI Тесты")
 public class SelenideTest {
     private static final Logger logger = LoggerFactory.getLogger(SelenideTest.class);
-
-    private final IndexSteps indexPageSteps = new IndexSteps();
 
     @BeforeClass
     @Parameters({"browser", "baseUrl"})
@@ -41,8 +41,8 @@ public class SelenideTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "helloReqResUsersTest", dataProviderClass = SelenideDataProvider.class)
     public void helloReqResUsersTest(HubDTO data) {
-        indexPageSteps
-                .openPage()
+
+        open("", IndexSteps.class)
                 .checkPageTitle(data.getBaseUIDTO().getPageTitle())
                 .checkUserData(data.getSingleUserDTO());
     }
