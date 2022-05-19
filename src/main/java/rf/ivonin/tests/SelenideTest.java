@@ -42,7 +42,7 @@ public class SelenideTest {
     @Test(dataProvider = "helloReqResUsersTest", dataProviderClass = SelenideDataProvider.class)
     public void helloReqResUsersTest(HubDTO data) {
 
-        open("", IndexSteps.class)
+        open("/", IndexSteps.class)
                 .checkPageTitle(data.getBaseUIDTO().getPageTitle())
                 .checkUserData(data.getSingleUserDTO());
     }
