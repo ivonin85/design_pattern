@@ -48,6 +48,7 @@ public class ReqResTest {
     public void singleUserTest(SingleUserDTO data) {
 
         var singleUser = request.get(USERS + "/5", SingleUserDTO.class);
+
         assertThat(data).isEqualTo(singleUser);
     }
 
@@ -107,7 +108,8 @@ public class ReqResTest {
                 CreateResponseDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
+        assertThat(data.getCreateRequestDTO())
+                .usingRecursiveComparison()
                 .ignoringFields("id", "createdAt")
                 .isEqualTo(createResponse);
     }

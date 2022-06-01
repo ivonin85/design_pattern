@@ -1,6 +1,7 @@
 package rf.ivonin.rest_assured;
 
 import io.restassured.response.Response;
+import lombok.NonNull;
 
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class Request {
 
-    public Response get(String basePath, int statusCode) {
+    public Response get(@NonNull String basePath, @NonNull int statusCode) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -19,7 +20,7 @@ public class Request {
                 .spec(Specification.responseSpecification(statusCode)).extract().response();
     }
 
-    public <T> T get(String basePath, Class<T> dtoClass) {
+    public <T> T get(@NonNull String basePath, @NonNull Class<T> dtoClass) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -30,7 +31,7 @@ public class Request {
                 .extract().body().as(dtoClass);
     }
 
-    public <T> T get(String basePath, String JSONSchema, Class<T> dtoClass) {
+    public <T> T get(@NonNull String basePath, @NonNull String JSONSchema, @NonNull Class<T> dtoClass) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -42,7 +43,7 @@ public class Request {
                 .extract().body().as(dtoClass);
     }
 
-    public <T> T get(String basePath, Map<String, ?> params, Class<T> dtoClass) {
+    public <T> T get(@NonNull String basePath, @NonNull Map<String, ?> params, @NonNull Class<T> dtoClass) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -54,7 +55,7 @@ public class Request {
                 .extract().body().as(dtoClass);
     }
 
-    public Response post(String basePath, Object bodyPayload, int statusCode) {
+    public Response post(@NonNull String basePath, @NonNull Object bodyPayload, @NonNull int statusCode) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -65,7 +66,7 @@ public class Request {
                 .spec(Specification.responseSpecification(statusCode)).extract().response();
     }
 
-    public <T> T post(String basePath, Object bodyPayload, Class<T> dtoClass, int statusCode) {
+    public <T> T post(@NonNull String basePath, @NonNull Object bodyPayload, @NonNull Class<T> dtoClass, @NonNull int statusCode) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -78,7 +79,7 @@ public class Request {
                 .body().as(dtoClass);
     }
 
-    public <T> T put(String basePath, Object bodyPayload, Class<T> dtoClass, int statusCode) {
+    public <T> T put(@NonNull String basePath, @NonNull Object bodyPayload, @NonNull Class<T> dtoClass, @NonNull int statusCode) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -91,7 +92,7 @@ public class Request {
                 .body().as(dtoClass);
     }
 
-    public <T> T patch(String basePath, Object bodyPayload, Class<T> dtoClass, int statusCode) {
+    public <T> T patch(@NonNull String basePath, @NonNull Object bodyPayload, @NonNull Class<T> dtoClass, @NonNull int statusCode) {
         return given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
@@ -104,7 +105,7 @@ public class Request {
                 .body().as(dtoClass);
     }
 
-    public void delete(String basePath, int statusCode) {
+    public void delete(@NonNull String basePath, @NonNull int statusCode) {
         given()
                 .spec(Specification.requestSpecification())
                 .basePath(basePath)
