@@ -56,7 +56,7 @@ public class ReqResTest {
     @Story("GET SINGLE USER NOT FOUND + GET SINGLE <RESOURCE> NOT FOUND")
     @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "notFoundTest", dataProviderClass = ReqResDataProvider.class)
-    public void notFoundTest(BaseAPIDTO data) {
+    public void notFoundTest(BaseAPIDTO data) throws Exception {
 
         var userList = request.get(data.getRoute(), data.getStatusCode());
 

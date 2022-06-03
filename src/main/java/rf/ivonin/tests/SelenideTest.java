@@ -1,6 +1,7 @@
 package rf.ivonin.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class SelenideTest {
         }
 
         //Configuration.remote = "http://localhost:4444/wd/hub";
+
 
 
     }
