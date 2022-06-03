@@ -35,11 +35,11 @@ public class ReqResTest {
     @Test
     public void userListTest() {
 
-        var params = new HashMap<String, Integer>() {{
+        HashMap<String, Integer> params = new HashMap<String, Integer>() {{
             put("page", 2);
         }};
 
-        var userList = request.get(USERS, params, UserListDTO.class);
+        request.get(USERS, params, UserListDTO.class);
     }
 
     @Feature("GET Запросы")
@@ -59,7 +59,7 @@ public class ReqResTest {
     @Test(dataProvider = "notFoundTest", dataProviderClass = ReqResDataProvider.class)
     public void notFoundTest(BaseAPIDTO data) throws Exception {
 
-        Response userList = request.get(data.getRoute(), data.getStatusCode());
+        request.get(data.getRoute(), data.getStatusCode());
 
     }
 
@@ -69,7 +69,7 @@ public class ReqResTest {
     @Test
     public void resourceListTest() {
 
-        ResourceListDTO userList = request.get(RESOURCE, ResourceListDTO.class);
+        request.get(RESOURCE, ResourceListDTO.class);
     }
 
     @Feature("GET Запросы")
@@ -77,7 +77,7 @@ public class ReqResTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void singleUserJSONSchemaTest() {
-        SingleUserDTO singleUser = request.get(
+        request.get(
                 USERS + "/5",
                 "json-schema/single-user-schema.json",
                 SingleUserDTO.class);

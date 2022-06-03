@@ -19,7 +19,6 @@ public class IndexSteps {
 
     public IndexSteps checkUserData(SingleUserDTO data) {
 
-
         UserDataDTO userCard = new IndexPage.UserCard(
                 findElementByText(indexPage.getUserNameCollection(), data.getData().getFirstName()))
                 .getUser();
