@@ -1,8 +1,8 @@
 package rf.ivonin.rest_assured;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
@@ -19,6 +19,7 @@ public class Specification {
                 .setAccept(ContentType.JSON)
                 .setContentType(ContentType.JSON)
                 .addFilter(new ResponseLoggingFilter())
+                .addFilter(new AllureRestAssured())
                 .addFilter(new RequestLoggingFilter())
                 .build();
     }
