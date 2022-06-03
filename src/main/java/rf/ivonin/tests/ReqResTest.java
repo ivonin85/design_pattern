@@ -208,6 +208,6 @@ public class ReqResTest {
     @Test(priority = 0)
     public void delayTest() {
         Long millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
-        assertThat(millis < 3000).as("DELAYED RESPONSE " + millis).isTrue();
+        assertThat(millis > 3000).as("DELAYED RESPONSE " + millis).isTrue();
     }
 }
