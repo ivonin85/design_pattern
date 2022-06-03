@@ -2,6 +2,7 @@ package rf.ivonin.tests;
 
 import io.qameta.allure.*;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import rf.ivonin.data.dataProvider.ReqResDataProvider;
 import rf.ivonin.dto.BaseAPIDTO;
@@ -47,7 +48,7 @@ public class ReqResTest {
     @Test(dataProvider = "singleUserTest", dataProviderClass = ReqResDataProvider.class)
     public void singleUserTest(SingleUserDTO data) {
 
-        var singleUser = request.get(USERS + "/5", SingleUserDTO.class);
+        SingleUserDTO singleUser = request.get(USERS + "/5", SingleUserDTO.class);
 
         assertThat(data).isEqualTo(singleUser);
     }
@@ -58,7 +59,7 @@ public class ReqResTest {
     @Test(dataProvider = "notFoundTest", dataProviderClass = ReqResDataProvider.class)
     public void notFoundTest(BaseAPIDTO data) throws Exception {
 
-        var userList = request.get(data.getRoute(), data.getStatusCode());
+        Response userList = request.get(data.getRoute(), data.getStatusCode());
 
     }
 
@@ -68,7 +69,7 @@ public class ReqResTest {
     @Test
     public void resourceListTest() {
 
-        var userList = request.get(RESOURCE, ResourceListDTO.class);
+        ResourceListDTO userList = request.get(RESOURCE, ResourceListDTO.class);
     }
 
     @Feature("GET Запросы")
@@ -76,7 +77,7 @@ public class ReqResTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void singleUserJSONSchemaTest() {
-        var singleUser = request.get(
+        SingleUserDTO singleUser = request.get(
                 USERS + "/5",
                 "json-schema/single-user-schema.json",
                 SingleUserDTO.class);
@@ -88,7 +89,7 @@ public class ReqResTest {
     @Test(dataProvider = "singleResourceTest", dataProviderClass = ReqResDataProvider.class)
     public void singleResourceTest(HubDTO data) {
 
-        var singleResource = request.get(
+        SingleResourceDTO singleResource = request.get(
                 data.getBaseAPIDTO().getRoute(),
                 SingleResourceDTO.class);
 
@@ -102,7 +103,7 @@ public class ReqResTest {
     @Test(dataProvider = "createTest", dataProviderClass = ReqResDataProvider.class)
     public void createTest(HubDTO data) {
 
-        var createResponse = request.post(
+        CreateResponseDTO createResponse = request.post(
                 data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
@@ -120,7 +121,7 @@ public class ReqResTest {
     @Test(dataProvider = "putUpdateTest", dataProviderClass = ReqResDataProvider.class)
     public void putUpdateTest(HubDTO data) {
 
-        var createResponse = request.put(
+        CreateResponseDTO createResponse = request.put(
                 data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
@@ -137,7 +138,7 @@ public class ReqResTest {
     @Test(dataProvider = "patchUpdateTest", dataProviderClass = ReqResDataProvider.class)
     public void patchUpdateTest(HubDTO data) {
 
-        var createResponse = request.patch(
+        CreateResponseDTO createResponse = request.patch(
                 data.getBaseAPIDTO().getRoute(),
                 data.getCreateRequestDTO(),
                 CreateResponseDTO.class,
@@ -164,7 +165,7 @@ public class ReqResTest {
     @Test(dataProvider = "registerSuccessfulTest", dataProviderClass = ReqResDataProvider.class)
     public void registerSuccessfulTest(HubDTO data) {
 
-        var registerResponse = request.post(
+        RegisterResponseDTO registerResponse = request.post(
                 data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
@@ -179,7 +180,7 @@ public class ReqResTest {
     @Test(dataProvider = "loginSuccessfulTest", dataProviderClass = ReqResDataProvider.class)
     public void loginSuccessfulTest(HubDTO data) {
 
-        var registerResponse = request.post(
+        RegisterResponseDTO registerResponse = request.post(
                 data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
@@ -194,9 +195,9 @@ public class ReqResTest {
     @Test
     public void registerUnsuccessfulTest() {
 
-        var data = new RegisterDTO().setEmail("sydney@fife");
-        var errorMessage = "Missing password";
-        var response = request.post(REGISTER, data, 400);
+        RegisterDTO data = new RegisterDTO().setEmail("sydney@fife");
+        String errorMessage = "Missing password";
+        Response response = request.post(REGISTER, data, 400);
 
         assertThat(response.jsonPath().getString("error")).isEqualTo(errorMessage);
     }
@@ -206,7 +207,7 @@ public class ReqResTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(priority = 0)
     public void delayTest() {
-        var millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
+        Long millis = RestAssured.get("https://reqres.in/api/users?delay=3").time();
         assertThat(millis < 3000).as("DELAYED RESPONSE " + millis).isTrue();
     }
 }

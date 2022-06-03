@@ -1,5 +1,6 @@
 package rf.ivonin.steps;
 
+import rf.ivonin.dto.generalDTO.UserDataDTO;
 import rf.ivonin.dto.userDTO.SingleUserDTO;
 import rf.ivonin.pages.IndexPage;
 
@@ -19,7 +20,7 @@ public class IndexSteps {
     public IndexSteps checkUserData(SingleUserDTO data) {
 
 
-        var userCard = new IndexPage.UserCard(
+        UserDataDTO userCard = new IndexPage.UserCard(
                 findElementByText(indexPage.getUserNameCollection(), data.getData().getFirstName()))
                 .getUser();
 
