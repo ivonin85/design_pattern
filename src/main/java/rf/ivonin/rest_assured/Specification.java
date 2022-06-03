@@ -19,9 +19,7 @@ public class Specification {
                 .setAccept(ContentType.JSON)
                 .setContentType(ContentType.JSON)
                 .addFilter(new ResponseLoggingFilter())
-                .addFilter(new AllureRestAssured()
-                        .withRequestTemplate("custom-http-request.ftl")
-                        .withResponseTemplate("custom-http-response.ftl"))
+                .addFilter(new AllureRestAssured())
                 .addFilter(new RequestLoggingFilter())
                 .build();
     }
