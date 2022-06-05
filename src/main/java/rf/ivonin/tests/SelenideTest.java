@@ -1,7 +1,6 @@
 package rf.ivonin.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +31,7 @@ public class SelenideTest {
             Configuration.baseUrl = "https://j17lt.csb.app";
         }
 
-        Configuration.remote = "http://selenoid:4444/wd/hub";
-
-
+        Configuration.remote = "http://selenoide:4444/wd/hub";
 
     }
 

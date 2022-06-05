@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 
-public class Actions {
+public class Helpers {
 
     public static SelenideElement findElementByText(ElementsCollection elementsCollection, String text){
         return elementsCollection.find(text(text));

@@ -4,16 +4,18 @@ import rf.ivonin.dto.generalDTO.UserDataDTO;
 import rf.ivonin.dto.userDTO.SingleUserDTO;
 import rf.ivonin.pages.IndexPage;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static rf.ivonin.utils.Actions.findElementByText;
+import static rf.ivonin.utils.Helpers.findElementByText;
 
 public class IndexSteps {
 
     private final IndexPage indexPage = new IndexPage();
 
     public IndexSteps checkPageTitle(String text) {
-        indexPage.getPageTitle().should(be(visible), have(text(text)));
+        indexPage.getPageTitle().shouldBe(be(visible), Duration.ofSeconds(10)).shouldHave(text(text));
         return this;
     }
 
