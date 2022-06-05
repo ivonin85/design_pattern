@@ -31,7 +31,7 @@ public class SelenideTest {
             Configuration.baseUrl = "https://j17lt.csb.app";
         }
 
-        Configuration.remote = "http://selenoide:4444/wd/hub";
+        Configuration.remote = "http://selenoid:4444/wd/hub";
 
     }
 
