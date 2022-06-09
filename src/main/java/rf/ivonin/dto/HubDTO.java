@@ -2,8 +2,7 @@ package rf.ivonin.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import rf.ivonin.dto.createDTO.CreateRequestDTO;
-import rf.ivonin.dto.createDTO.CreateResponseDTO;
+import rf.ivonin.dto.createDTO.CreateUserDTO;
 import rf.ivonin.dto.registerDTO.RegisterDTO;
 import rf.ivonin.dto.registerDTO.RegisterResponseDTO;
 import rf.ivonin.dto.resourceDTO.SingleResourceDTO;
@@ -22,7 +21,6 @@ public class HubDTO {
     private SingleUserDTO singleUserDTO;
     private UserListDTO userListDTO;
     private SingleResourceDTO singleResourceDTO;
-    private CreateRequestDTO createRequestDTO;
-    private CreateResponseDTO createResponseDTO;
+    private CreateUserDTO createUserDTO;
 
 }

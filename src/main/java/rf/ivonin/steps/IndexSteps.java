@@ -15,7 +15,7 @@ public class IndexSteps {
     private final IndexPage indexPage = new IndexPage();
 
     public IndexSteps checkPageTitle(String text) {
-        indexPage.getPageTitle().shouldBe(be(visible), Duration.ofSeconds(10)).shouldHave(text(text));
+        indexPage.getPageTitle().shouldBe(visible, Duration.ofSeconds(10)).shouldHave(text(text));
         return this;
     }
 

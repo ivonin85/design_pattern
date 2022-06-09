@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import rf.ivonin.data.dataProvider.ReqResDataProvider;
 import rf.ivonin.dto.BaseAPIDTO;
 import rf.ivonin.dto.HubDTO;
-import rf.ivonin.dto.createDTO.CreateResponseDTO;
+import rf.ivonin.dto.createDTO.CreateUserDTO;
 import rf.ivonin.dto.registerDTO.RegisterDTO;
 import rf.ivonin.dto.registerDTO.RegisterResponseDTO;
 import rf.ivonin.dto.resourceDTO.SingleResourceDTO;
@@ -24,8 +24,6 @@ import static rf.ivonin.data.constants.Endpoints.*;
 @Epic("API Тесты")
 public class ReqResTest {
 
-    // TODO JsonSchemaValidator validator = JsonSchemaValidator.matchesJsonSchemaInClasspath(jsonSchemaPath);
-
     private final Request request = new Request();
 
     @Feature("GET Запросы")
@@ -35,7 +33,7 @@ public class ReqResTest {
     @Test
     public void userListTest() {
 
-        HashMap<String, Integer> params = new HashMap<String, Integer>() {{
+        HashMap<String, Integer> params = new HashMap<>() {{
             put("page", 2);
         }};
 
@@ -89,11 +87,11 @@ public class ReqResTest {
     @Test(dataProvider = "singleResourceTest", dataProviderClass = ReqResDataProvider.class)
     public void singleResourceTest(HubDTO data) {
 
-        SingleResourceDTO singleResource = request.get(
+        SingleResourceDTO response = request.get(
                 data.getBaseAPIDTO().getRoute(),
                 SingleResourceDTO.class);
 
-        assertThat(data.getSingleResourceDTO()).isEqualTo(singleResource);
+        assertThat(data.getSingleResourceDTO()).isEqualTo(response);
 
     }
 
@@ -103,16 +101,16 @@ public class ReqResTest {
     @Test(dataProvider = "createTest", dataProviderClass = ReqResDataProvider.class)
     public void createTest(HubDTO data) {
 
-        CreateResponseDTO createResponse = request.post(
+        CreateUserDTO response = request.post(
                 data.getBaseAPIDTO().getRoute(),
-                data.getCreateRequestDTO(),
-                CreateResponseDTO.class,
+                data.getCreateUserDTO(),
+                CreateUserDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getCreateRequestDTO())
+        assertThat(data.getCreateUserDTO())
                 .usingRecursiveComparison()
                 .ignoringFields("id", "createdAt")
-                .isEqualTo(createResponse);
+                .isEqualTo(response);
     }
 
     @Feature("PUT Запросы")
@@ -121,15 +119,15 @@ public class ReqResTest {
     @Test(dataProvider = "putUpdateTest", dataProviderClass = ReqResDataProvider.class)
     public void putUpdateTest(HubDTO data) {
 
-        CreateResponseDTO createResponse = request.put(
+        CreateUserDTO response = request.put(
                 data.getBaseAPIDTO().getRoute(),
-                data.getCreateRequestDTO(),
-                CreateResponseDTO.class,
+                data.getCreateUserDTO(),
+                CreateUserDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
+        assertThat(data.getCreateUserDTO()).usingRecursiveComparison()
                 .ignoringFields("createdAt")
-                .isEqualTo(createResponse);
+                .isEqualTo(response);
     }
 
     @Feature("PATCH Запросы")
@@ -138,15 +136,15 @@ public class ReqResTest {
     @Test(dataProvider = "patchUpdateTest", dataProviderClass = ReqResDataProvider.class)
     public void patchUpdateTest(HubDTO data) {
 
-        CreateResponseDTO createResponse = request.patch(
+        CreateUserDTO response = request.patch(
                 data.getBaseAPIDTO().getRoute(),
-                data.getCreateRequestDTO(),
-                CreateResponseDTO.class,
+                data.getCreateUserDTO(),
+                CreateUserDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getCreateRequestDTO()).usingRecursiveComparison()
+        assertThat(data.getCreateUserDTO()).usingRecursiveComparison()
                 .ignoringFields("createdAt")
-                .isEqualTo(createResponse);
+                .isEqualTo(response);
     }
 
     @Feature("DELETE Запросы")
@@ -165,13 +163,13 @@ public class ReqResTest {
     @Test(dataProvider = "registerSuccessfulTest", dataProviderClass = ReqResDataProvider.class)
     public void registerSuccessfulTest(HubDTO data) {
 
-        RegisterResponseDTO registerResponse = request.post(
+        RegisterResponseDTO response = request.post(
                 data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getRegisterResponseDTO()).isEqualTo(registerResponse);
+        assertThat(data.getRegisterResponseDTO()).isEqualTo(response);
     }
 
     @Feature("POST Запросы")
@@ -180,13 +178,13 @@ public class ReqResTest {
     @Test(dataProvider = "loginSuccessfulTest", dataProviderClass = ReqResDataProvider.class)
     public void loginSuccessfulTest(HubDTO data) {
 
-        RegisterResponseDTO registerResponse = request.post(
+        RegisterResponseDTO response = request.post(
                 data.getBaseAPIDTO().getRoute(),
                 data.getRegisterDTO(),
                 RegisterResponseDTO.class,
                 data.getBaseAPIDTO().getStatusCode());
 
-        assertThat(data.getRegisterResponseDTO().getToken()).isEqualTo(registerResponse.getToken());
+        assertThat(data.getRegisterResponseDTO().getToken()).isEqualTo(response.getToken());
     }
 
     @Feature("POST Запросы")

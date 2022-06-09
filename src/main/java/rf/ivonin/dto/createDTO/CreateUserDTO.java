@@ -6,8 +6,9 @@ import lombok.experimental.Accessors;
 @lombok.Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CreateRequestDTO {
+public class CreateUserDTO {
     private String name;
     private String job;
-
+    private String id;
+    private String createdAt;
 }

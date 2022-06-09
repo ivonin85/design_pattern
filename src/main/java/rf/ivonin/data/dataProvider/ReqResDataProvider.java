@@ -3,8 +3,7 @@ package rf.ivonin.data.dataProvider;
 import org.testng.annotations.DataProvider;
 import rf.ivonin.dto.BaseAPIDTO;
 import rf.ivonin.dto.HubDTO;
-import rf.ivonin.dto.createDTO.CreateRequestDTO;
-import rf.ivonin.dto.createDTO.CreateResponseDTO;
+import rf.ivonin.dto.createDTO.CreateUserDTO;
 import rf.ivonin.dto.generalDTO.ResourceDataDTO;
 import rf.ivonin.dto.generalDTO.SupportDTO;
 import rf.ivonin.dto.generalDTO.UserDataDTO;
@@ -101,7 +100,7 @@ public class ReqResDataProvider {
         List<HubDTO> data = List.of(
                 new HubDTO()
                         .setBaseAPIDTO(new BaseAPIDTO().setRoute(RESOURCE + "/2").setStatusCode(201))
-                        .setCreateRequestDTO(new CreateRequestDTO()
+                        .setCreateUserDTO(new CreateUserDTO()
                                 .setJob("leader")
                                 .setName("morpheus")));
 
@@ -113,7 +112,7 @@ public class ReqResDataProvider {
         List<HubDTO> data = List.of(
                 new HubDTO()
                         .setBaseAPIDTO(new BaseAPIDTO().setRoute(RESOURCE + "/2").setStatusCode(200))
-                        .setCreateRequestDTO(new CreateRequestDTO()
+                        .setCreateUserDTO(new CreateUserDTO()
                                 .setName("morpheus")
                                 .setJob("zion resident")));
 
@@ -125,10 +124,10 @@ public class ReqResDataProvider {
         List<HubDTO> data = List.of(
                 new HubDTO()
                         .setBaseAPIDTO(new BaseAPIDTO().setRoute(USERS + "/2").setStatusCode(200))
-                        .setCreateRequestDTO(new CreateRequestDTO()
+                        .setCreateUserDTO(new CreateUserDTO()
                                 .setName("morpheus")
                                 .setJob("zion resident"))
-                        .setCreateResponseDTO(new CreateResponseDTO()));
+                        .setCreateUserDTO(new CreateUserDTO()));
 
         return data.stream().map(val -> new Object[]{val}).collect(Collectors.toList()).iterator();
     }
